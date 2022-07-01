@@ -19,8 +19,10 @@ connectDB()
 
 //load routes
 const userRouter = require('./routes/users')
+const requestRouter = require('./routes/request')
 
 app.use('/api/users', userRouter)
+app.use('/api/requests', requestRouter)
 
 
 app.listen(PORT, ()=>{
