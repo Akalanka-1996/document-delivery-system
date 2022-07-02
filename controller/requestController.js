@@ -1,5 +1,6 @@
 const Request = require("../model/request.model");
 const asyncHandler = require("express-async-handler");
+const { roles } = require("../roles");
 
 // get all requests
 
@@ -19,7 +20,7 @@ const getRequestByUser = asyncHandler(async (req, res) => {
 // create a request
 
 const createRequest = asyncHandler(async (req, res) => {
-  const { title, description, name, address } = req.body;
+  const { title, description, name, phone, address } = req.body;
 
   if (!title || !description || !name) {
     res.status(400);
@@ -30,6 +31,7 @@ const createRequest = asyncHandler(async (req, res) => {
       title,
       description,
       name,
+      phone,
       address,
     });
 
@@ -42,38 +44,57 @@ const createRequest = asyncHandler(async (req, res) => {
 // update a request
 
 const updateRequest = asyncHandler(async (req, res) => {
-  const { title, description, name, address, status } = req.body;
+  const { title, description, name, phone, address, status } = req.body;
 
   const request = await Request.findById(req.params.id);
 
-  if (request) {
-    request.title = title
-    request.description = description
-    request.name = name
-    request.address = address
-    request.status = status
+  var permission = roles.can(req.user.userRole).updateAny("request");
 
-    const updatedRequest = await request.save();
-    res.json(updatedRequest);
+  if (permission.granted === false) {
+    if (request.user.toString() === req.user._id.toString()) {
+      permission = roles.can(req.user.userRole).updateOwn("request");
+    }
+  }
+
+  if (permission.granted) {
+    if (request) {
+      request.title = title;
+      request.description = description;
+      request.name = name;
+      request.phone = phone;
+      request.address = address;
+      request.status = status;
+
+      const updatedRequest = await request.save();
+      res.json(updatedRequest);
+    } else {
+      res.status(404);
+      throw new Error("Question not found");
+    }
   } else {
-    res.status(404);
-    throw new Error("Question not found");
+    res.status(403);
+    throw new Error("You don't have permission");
   }
 });
 
 // delete a request
 
 const deleteRequest = asyncHandler(async (req, res) => {
-   
-    const request = await Request.findById(req.params.id);
-  
-    if (request) {
-      await request.remove()
-      res.json({message: "Request Removed"})
-    } else {
-      res.status(404);
-      throw new Error("Question not found");
-    }
-  });
+  const request = await Request.findById(req.params.id);
 
-module.exports = { createRequest, getRequests, getRequestByUser, updateRequest, deleteRequest };
+  if (request) {
+    await request.remove();
+    res.json({ message: "Request Removed" });
+  } else {
+    res.status(404);
+    throw new Error("Question not found");
+  }
+});
+
+module.exports = {
+  createRequest,
+  getRequests,
+  getRequestByUser,
+  updateRequest,
+  deleteRequest,
+};
