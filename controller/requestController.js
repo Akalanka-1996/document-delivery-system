@@ -8,6 +8,13 @@ const getRequests = asyncHandler(async (req, res) => {
     res.json(requests)
 })
 
+// get requests by user
+
+const getRequestByUser = asyncHandler(async (req, res) => {
+    console.log(req.body)
+    const requests = await Request.find({user: req.user._id})
+    res.json(requests)
+})
 
 // create a request
 
@@ -31,4 +38,4 @@ const createRequest = asyncHandler(async (req, res) => {
     }
 })
 
-module.exports = {createRequest, getRequests}
+module.exports = {createRequest, getRequests, getRequestByUser}
