@@ -1,6 +1,13 @@
 const Request = require('../model/request.model')
 const asyncHandler = require('express-async-handler')
 
+// get all requests
+
+const getRequests = asyncHandler(async (req, res) => {
+    const requests = await Request.find()
+    res.json(requests)
+})
+
 
 // create a request
 
@@ -24,4 +31,4 @@ const createRequest = asyncHandler(async (req, res) => {
     }
 })
 
-module.exports = {createRequest}
+module.exports = {createRequest, getRequests}
