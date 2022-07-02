@@ -61,4 +61,19 @@ const updateRequest = asyncHandler(async (req, res) => {
   }
 });
 
-module.exports = { createRequest, getRequests, getRequestByUser, updateRequest };
+// delete a request
+
+const deleteRequest = asyncHandler(async (req, res) => {
+   
+    const request = await Request.findById(req.params.id);
+  
+    if (request) {
+      await request.remove()
+      res.json({message: "Request Removed"})
+    } else {
+      res.status(404);
+      throw new Error("Question not found");
+    }
+  });
+
+module.exports = { createRequest, getRequests, getRequestByUser, updateRequest, deleteRequest };
