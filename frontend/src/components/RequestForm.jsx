@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
+import {useSelector, useDispatch} from 'react-redux'
+import { createRequest } from "../features/request/requestSlice";
 
 const RequestForm = () => {
   const [show, setShow] = useState(false);
@@ -18,6 +20,8 @@ const RequestForm = () => {
 
   const { title, description, name, phone, address } = formData;
 
+  const disptach = useDispatch()
+
   const onChange = (e) => {
     setFormData((prevState) => ({
       ...prevState,
@@ -29,7 +33,16 @@ const RequestForm = () => {
   const onSubmit = (e) => {
     e.preventDefault()
 
-    console.log(formData)
+    const requestData = {
+      title, 
+      description, 
+      name, 
+      phone, 
+      address 
+    }
+
+    disptach(createRequest(requestData))
+    handleClose()
   };
 
   return (
@@ -44,7 +57,7 @@ const RequestForm = () => {
         </Modal.Header>
         <Modal.Body>
           <Form>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+            <Form.Group className="mb-3">
               <Form.Label>Title</Form.Label>
               <Form.Control
                 type="text"
@@ -56,7 +69,7 @@ const RequestForm = () => {
             </Form.Group>
             <Form.Group
               className="mb-3"
-              controlId="exampleForm.ControlTextarea1"
+             
             >
               <Form.Label>Description</Form.Label>
               <Form.Control
@@ -69,7 +82,7 @@ const RequestForm = () => {
                 onChange={onChange}
               />
             </Form.Group>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
+            <Form.Group className="mb-3">
               <Form.Label>Name</Form.Label>
               <Form.Control
                 type="text"
@@ -79,7 +92,7 @@ const RequestForm = () => {
                 onChange={onChange}
               />
             </Form.Group>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput3">
+            <Form.Group className="mb-3">
               <Form.Label>Phone</Form.Label>
               <Form.Control
                 type="text"
@@ -89,7 +102,7 @@ const RequestForm = () => {
                 onChange={onChange}
               />
             </Form.Group>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput4">
+            <Form.Group className="mb-3">
               <Form.Label>Address</Form.Label>
               <Form.Control
                 type="text"
