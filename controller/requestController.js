@@ -5,16 +5,25 @@ const { roles } = require("../roles");
 // get all requests
 
 const getRequests = asyncHandler(async (req, res) => {
-  const requests = await Request.find();
-  res.json(requests);
-});
+  const role = req.user.userRole;
 
-// get requests by user
+  switch (role) {
+    case "admin":
+      const adminRequests = await Request.find();
+      res.json(adminRequests);
+      break;
+    case "post":
+      const postRequests = await Request.find();
+      res.json(postRequests);
+      break;
+    case "basic":
+      const requests = await Request.find({ user: req.user._id });
+      res.json(requests);
+      break;
+    default:
+      break;
+  }
 
-const getRequestByUser = asyncHandler(async (req, res) => {
-  console.log(req.body);
-  const requests = await Request.find({ user: req.user._id });
-  res.json(requests);
 });
 
 // create a request
@@ -94,7 +103,6 @@ const deleteRequest = asyncHandler(async (req, res) => {
 module.exports = {
   createRequest,
   getRequests,
-  getRequestByUser,
   updateRequest,
   deleteRequest,
 };
