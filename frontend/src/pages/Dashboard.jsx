@@ -2,11 +2,11 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import RegisterForm from "../components/RequestForm";
 import RequestForm from "../components/RequestForm";
+import { getRequests } from "../features/request/requestSlice";
 
 const Dashboard = () => {
-  ;
+  
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -19,6 +19,8 @@ const Dashboard = () => {
     if (!user) {
       navigate("/login");
     }
+
+    dispatch(getRequests())
 
   
   }, [user, navigate]);
