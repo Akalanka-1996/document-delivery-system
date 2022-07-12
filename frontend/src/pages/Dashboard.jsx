@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import RequestForm from "../components/RequestForm";
 import { getRequests } from "../features/request/requestSlice";
+import RequestTable from "../components/RequestTable";
 
 const Dashboard = () => {
   
@@ -31,6 +32,8 @@ const Dashboard = () => {
     </section>
 
     <RequestForm />
+
+    <RequestTable />
 
   </>
 };
