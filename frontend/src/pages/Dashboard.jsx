@@ -5,6 +5,8 @@ import { useSelector, useDispatch } from "react-redux";
 import RequestForm from "../components/RequestForm";
 import { getRequests } from "../features/request/requestSlice";
 import RequestTable from "../components/RequestTable";
+import Footer from "../components/Footer";
+import ColoredLine from "../components/Line";
 
 const Dashboard = () => {
   
@@ -34,6 +36,9 @@ const Dashboard = () => {
     <RequestForm />
 
     <RequestTable />
+
+    {/* <ColoredLine color="gray" /> */}
+    <Footer />
 
   </>
 };
