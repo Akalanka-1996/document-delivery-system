@@ -21,7 +21,7 @@ const Dashboard = () => {
       navigate("/login");
     }
 
-    dispatch(getRequests())
+  
 
   
   }, [user, navigate]);

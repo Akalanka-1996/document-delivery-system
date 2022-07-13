@@ -1,41 +1,54 @@
-import React from 'react'
-import {Table} from 'react-bootstrap'
-import './style.css'
+import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { getRequests, reset } from "../features/request/requestSlice";
+import { Table } from "react-bootstrap";
+import "./style.css";
 
 const RequestTable = () => {
-  return (
-    <div className='request-table'>
-        <Table striped bordered hover>
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Username</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>1</td>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td>@fat</td>
-        </tr>
-        <tr>
-          <td>3</td>
-          <td colSpan={2}>Larry the Bird</td>
-          <td>@twitter</td>
-        </tr>
-      </tbody>
-    </Table>
-    </div>
-  )
-}
+  const dispatch = useDispatch();
 
-export default RequestTable
+  const { requests, isLoading, isError, message } = useSelector(
+    (state) => state.requests
+  );
+
+  useEffect(() => {
+    if (isError) {
+      console.log(message);
+    }
+
+    dispatch(getRequests());
+
+    return () => {
+      dispatch(reset());
+    };
+  }, [dispatch]);
+
+  return (
+    <div className="request-table">
+      <Table striped bordered hover>
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {requests.map((request) => (
+            <tr key={request._id}>
+              <td>{request.title}</td>
+              <td>{request.description}</td>
+              <td>{request.name}</td>
+              <td>{request.address}</td>
+              <td>{request.status}</td>
+            </tr>
+          ))}
+        </tbody>
+      </Table>
+    </div>
+  );
+};
+
+export default RequestTable;
