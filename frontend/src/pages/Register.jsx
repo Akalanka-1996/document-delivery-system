@@ -4,6 +4,7 @@ import { FaUser } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
 import { register, reset } from "../features/auth/authSlice";
 import { useNavigate } from "react-router-dom";
+import Footer from "../components/Footer";
 
 function Register() {
   const [formData, setFormData] = useState({
@@ -146,6 +147,12 @@ function Register() {
           </div>
         </form>
       </section>
+
+      <section className="login-footer">
+      <Footer />
+
+      </section>
+      
     </>
   );
 }

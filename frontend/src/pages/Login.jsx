@@ -5,6 +5,7 @@ import { toast } from 'react-toastify'
 import { useSelector, useDispatch } from "react-redux";
 import {login, reset} from '../features/auth/authSlice'
 import { useNavigate } from "react-router-dom";
+import Footer from "../components/Footer";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -88,6 +89,8 @@ const Login = () => {
           </div>
         </form>
       </secton>
+
+      <Footer />
     </>
   );
 };

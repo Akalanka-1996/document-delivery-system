@@ -41,15 +41,15 @@ const AdminTable = () => {
         </thead>
         <tbody>
           {requests.map((request) => (
-            <tr key={request._id}>
+            <tr key={request._id} style={{ fontSize: 15 }}>
               <td>{request.title}</td>
               <td>{request.description}</td>
               <td>{request.name}</td>
               <td>{request.address}</td>
               <td>{request.status}</td>
               <td>
-              <Button variant="success">Approve</Button>
-              <Button variant="danger">Reject</Button>
+              <Button  size="sm" variant="success">Approve</Button>
+              <Button  size="sm" variant="danger">Reject</Button>
               </td>
             </tr>
           ))}
