@@ -8,6 +8,110 @@ import RequestTable from "../components/RequestTable";
 import Footer from "../components/Footer";
 import ColoredLine from "../components/Line";
 
+// const Dashboard = () => {
+  
+//   const navigate = useNavigate();
+//   const dispatch = useDispatch();
+
+//   const { user } = useSelector((state) => state.auth);
+//   const role = user.userRole;
+ 
+
+//   useEffect(() => {
+    
+
+//     if (!user) {
+//       navigate("/login");
+//     }
+
+  
+
+  
+//   }, [user, navigate]);
+
+//   switch(role) {
+//     case 'admin':
+//       return <>
+//     (
+//       <section className="heading">
+//       <h1>Welcome {user && user.name}</h1>
+//       <p>{role}</p>
+//     </section>
+
+//     <RequestForm />
+
+//     <RequestTable />
+
+//     {/* <ColoredLine color="gray" /> */}
+//     <Footer />
+
+//     )
+//   </>
+//     break
+//     case 'post':
+//       return <>
+//     (
+//       <section className="heading">
+//       <h1>Welcome {user && user.name}</h1>
+//       <p>{role}</p>
+//       <p>you are post</p>
+//     </section>
+
+//     <RequestForm />
+
+//     <RequestTable />
+
+//     {/* <ColoredLine color="gray" /> */}
+//     <Footer />
+
+//     )
+//   </>
+//     break
+//     case 'basic':
+//       return <>
+//     (
+//       <section className="heading">
+//       <h1>Welcome {user && user.name}</h1>
+//       <p>{role}</p>
+//       <p>you are basic</p>
+//     </section>
+
+//     <RequestForm />
+
+//     <RequestTable />
+
+//     {/* <ColoredLine color="gray" /> */}
+//     <Footer />
+
+//     )
+//   </>
+//     break
+//     default:
+//       <h1>nothing</h1>
+//   }
+
+//   return <>
+//     (
+//       <section className="heading">
+//       <h1>Welcome {user && user.name}</h1>
+//       <p>{role}</p>
+//     </section>
+
+//     <RequestForm />
+
+//     <RequestTable />
+
+//     {/* <ColoredLine color="gray" /> */}
+//     <Footer />
+
+//     )
+//   </>
+// };
+
+// export default Dashboard;
+
+
+
 const Dashboard = () => {
   
   const navigate = useNavigate();
@@ -33,7 +137,10 @@ const Dashboard = () => {
       <h1>Welcome {user && user.name}</h1>
     </section>
 
-    <RequestForm />
+    {
+      user?.userRole === 'basic' ? <RequestForm /> : [( user?.userRole === 'admin' ? <p>admin role</p> : <p>post role</p> )]
+    }
+    
 
     <RequestTable />
 
