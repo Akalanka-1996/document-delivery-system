@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getRequests, reset } from "../features/request/requestSlice";
-import { Table } from "react-bootstrap";
+import { Table, Button } from "react-bootstrap";
 import "./style.css";
 
-const RequestTable = () => {
+const AdminTable = () => {
   const dispatch = useDispatch();
 
   const { requests, isLoading, isError, message } = useSelector(
@@ -36,6 +36,7 @@ const RequestTable = () => {
             <th>Name</th>
             <th>Address</th>
             <th>Status</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
@@ -46,6 +47,10 @@ const RequestTable = () => {
               <td>{request.name}</td>
               <td>{request.address}</td>
               <td>{request.status}</td>
+              <td>
+              <Button variant="success">Approve</Button>
+              <Button variant="danger">Reject</Button>
+              </td>
             </tr>
           ))}
         </tbody>
@@ -54,4 +59,4 @@ const RequestTable = () => {
   );
 };
 
-export default RequestTable;
+export default AdminTable;
