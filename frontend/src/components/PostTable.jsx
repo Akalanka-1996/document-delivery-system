@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getRequests, reset } from "../features/request/requestSlice";
 import { Table, Button } from "react-bootstrap";
+import axios from "axios";
 import "./style.css";
 
 const PostTable = () => {
@@ -26,6 +27,24 @@ const PostTable = () => {
     };
   }, [dispatch]);
 
+  const postHandler = async (id) => {
+    try {
+      const config = {
+        headers: {
+          "Content-type": "application/json",
+        },
+      };
+
+      const res = await axios.put(
+        `http://localhost:8080/api/requests/post-request/${id}`
+      );
+      alert("Package Rejected");
+      window.location.reload();
+    } catch (error) {
+      alert(error);
+    }
+  }
+
   return (
     <div className="request-table">
       <Table striped bordered hover>
@@ -48,7 +67,7 @@ const PostTable = () => {
               <td>{request.address}</td>
               <td>{request.status}</td>
               <td>
-              <Button variant="warning">Post</Button>
+              <Button variant="warning" onClick={() => postHandler(request._id)}>Post</Button>
               </td>
             </tr>
           ))}
