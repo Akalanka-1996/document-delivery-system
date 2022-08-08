@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getRequests, reset } from "../features/request/requestSlice";
 import { Table, Button } from "react-bootstrap";
+import axios from "axios";
 import "./style.css";
 
 const AdminTable = () => {
@@ -26,6 +27,42 @@ const AdminTable = () => {
     };
   }, [dispatch]);
 
+  const approveHandler = async (id) => {
+    try {
+      const config = {
+        headers: {
+          "Content-type": "application/json",
+        },
+      };
+
+      const res = await axios.put(
+        `http://localhost:8080/api/requests/approve-request/${id}`
+      );
+      alert("Request Approved");
+      window.location.reload();
+    } catch (error) {
+      alert(error);
+    }
+  }
+
+  const rejectHandler = async (id) => {
+    try {
+      const config = {
+        headers: {
+          "Content-type": "application/json",
+        },
+      };
+
+      const res = await axios.put(
+        `http://localhost:8080/api/requests/reject-request/${id}`
+      );
+      alert("Request Rejected");
+      window.location.reload();
+    } catch (error) {
+      alert(error);
+    }
+  }
+
   return (
     <div className="request-table">
       <Table striped bordered hover>
@@ -48,8 +85,8 @@ const AdminTable = () => {
               <td>{request.address}</td>
               <td>{request.status}</td>
               <td>
-              <Button  size="sm" variant="success">Approve</Button>
-              <Button  size="sm" variant="danger">Reject</Button>
+              <Button  size="sm" variant="success" onClick={() => approveHandler(request._id)}>Approve</Button>
+              <Button  size="sm" variant="danger" onClick={() => rejectHandler(request._id)}>Reject</Button>
               </td>
             </tr>
           ))}

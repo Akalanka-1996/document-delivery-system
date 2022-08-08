@@ -86,6 +86,63 @@ const updateRequest = asyncHandler(async (req, res) => {
   }
 });
 
+// handle approve
+
+const approveRequest = asyncHandler(async (req, res) => {
+  const { title, description, name, phone, address, status } = req.body;
+
+  const request = await Request.findById(req.params.id)
+
+  if(request) {
+    request.status = 'approved'
+
+    const updatedRequestx = await request.save()
+    res.json(updatedRequestx)
+  } else {
+    res.status(404)
+    throw new Error("Request not found")
+  }
+
+})
+
+// handle reject
+
+const rejectRequest = asyncHandler(async (req, res) => {
+  const { title, description, name, phone, address, status } = req.body;
+
+  const request = await Request.findById(req.params.id)
+
+  if(request) {
+    request.status = 'rejected'
+
+    const updatedRequestx = await request.save()
+    res.json(updatedRequestx)
+  } else {
+    res.status(404)
+    throw new Error("Request not found")
+  }
+
+})
+
+// post request
+
+const postRequest = asyncHandler(async (req, res) => {
+  const { title, description, name, phone, address, status } = req.body;
+
+  const request = await Request.findById(req.params.id)
+
+  if(request) {
+    request.status = 'posted'
+
+    const updatedRequestx = await request.save()
+    res.json(updatedRequestx)
+  } else {
+    res.status(404)
+    throw new Error("Request not found")
+  }
+
+})
+
 // delete a request
 
 const deleteRequest = asyncHandler(async (req, res) => {
@@ -105,4 +162,7 @@ module.exports = {
   getRequests,
   updateRequest,
   deleteRequest,
+  approveRequest,
+  rejectRequest,
+  postRequest
 };

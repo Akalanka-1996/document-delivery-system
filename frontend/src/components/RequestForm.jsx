@@ -61,6 +61,7 @@ const RequestForm = () => {
               <Form.Label>Title</Form.Label>
               <Form.Control
                 type="text"
+                required="true"
                 id="title"
                 name="title"
                 value={title}
@@ -76,6 +77,7 @@ const RequestForm = () => {
                 as="textarea"
                 rows={2}
                 type="text"
+                required
                 id="description"
                 name="description"
                 value={description}
@@ -86,6 +88,7 @@ const RequestForm = () => {
               <Form.Label>Name</Form.Label>
               <Form.Control
                 type="text"
+                required
                 id="name"
                 name="name"
                 value={name}
@@ -96,6 +99,7 @@ const RequestForm = () => {
               <Form.Label>Phone</Form.Label>
               <Form.Control
                 type="text"
+                required
                 id="phone"
                 name="phone"
                 value={phone}
@@ -106,6 +110,7 @@ const RequestForm = () => {
               <Form.Label>Address</Form.Label>
               <Form.Control
                 type="text"
+                required
                 id="address"
                 name="address"
                 value={address}
