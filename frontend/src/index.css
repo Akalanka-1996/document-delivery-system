@@ -135,7 +135,7 @@ h3 {
   margin: 0 0 5px 3px;
 }
 
-.btn {
+/* .btn {
   padding: 10px 20px;
   border: 1px solid #000;
   border-radius: 5px;
@@ -148,7 +148,7 @@ h3 {
   display: flex;
   align-items: center;
   justify-content: center;
-}
+} */
 
 
 .btn svg {
@@ -185,6 +185,12 @@ h3 {
   justify-content: center;
 }
 
+.btn-create{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .btn-register:hover {
   transform: scale(0.98);
 }
@@ -193,6 +199,20 @@ h3 {
   transform: scale(0.98);
 }
 
+.btn-approve, .btn-reject{
+  padding: 5px 10px;
+  font-size: 12px;
+}
+
+.btn-list{
+  list-style-type: none;
+padding:0;
+margin:0;
+}
+ 
+.btn-list li{
+  display: inline-block;
+}
 
 .loadingSpinnerContainer {
   position: fixed;

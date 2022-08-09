@@ -47,7 +47,7 @@ const RequestForm = () => {
 
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>
+      <Button className="btn-create" variant="primary" onClick={handleShow}>
         Create Request
       </Button>
 

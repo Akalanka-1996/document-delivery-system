@@ -14,7 +14,6 @@ const AdminTable = () => {
 
   const { user } = useSelector((state) => state.auth);
 
-
   useEffect(() => {
     if (isError) {
       console.log(message);
@@ -43,7 +42,7 @@ const AdminTable = () => {
     } catch (error) {
       alert(error);
     }
-  }
+  };
 
   const rejectHandler = async (id) => {
     try {
@@ -61,7 +60,7 @@ const AdminTable = () => {
     } catch (error) {
       alert(error);
     }
-  }
+  };
 
   return (
     <div className="request-table">
@@ -84,7 +83,32 @@ const AdminTable = () => {
               <td>{request.name}</td>
               <td>{request.address}</td>
               <td>{request.status}</td>
-              <td>
+              {/* <td>
+                <ul className="btn-list">
+                  <li className="btn-list-item" style={{display: "inline"}}>
+                    <Button
+                      className="btn-approve"
+                      size="sm"
+                      variant="success"
+                      onClick={() => approveHandler(request._id)}
+                    >
+                      Approve
+                    </Button>
+                  </li>
+                  <li  style={{display: "inline"}}>
+                    <Button
+                      className="btn-reject"
+                      size="sm"
+                      variant="danger"
+                      onClick={() => rejectHandler(request._id)}
+                    >
+                      Reject
+                    </Button>
+                  </li>
+                </ul>
+              </td> */}
+
+<td>
               <Button  size="sm" variant="success" onClick={() => approveHandler(request._id)}>Approve</Button>
               <Button  size="sm" variant="danger" onClick={() => rejectHandler(request._id)}>Reject</Button>
               </td>

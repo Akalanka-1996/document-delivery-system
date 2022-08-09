@@ -38,7 +38,7 @@ const PostTable = () => {
       const res = await axios.put(
         `http://localhost:8080/api/requests/post-request/${id}`
       );
-      alert("Package Rejected");
+      alert("Package Posted!");
       window.location.reload();
     } catch (error) {
       alert(error);
