@@ -25,6 +25,7 @@ const Login = () => {
   useEffect(() => {
     if (isError) {
       toast.error(message)
+      alert("Invalid username or password!")
     }
 
     if (isSuccess || user) {
