@@ -13,7 +13,7 @@ const getRequests = asyncHandler(async (req, res) => {
       res.json(adminRequests);
       break;
     case "post":
-      const postRequests = await Request.find({status: 'approved'});
+      const postRequests = await Request.find({ status: { $in: [ "approved", "posted"] } });
       res.json(postRequests);
       break;
     case "basic":
