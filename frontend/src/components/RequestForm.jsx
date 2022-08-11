@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
-import {useSelector, useDispatch} from 'react-redux'
+import { useSelector, useDispatch } from "react-redux";
 import { createRequest } from "../features/request/requestSlice";
 
 const RequestForm = () => {
@@ -20,7 +20,7 @@ const RequestForm = () => {
 
   const { title, description, name, phone, address } = formData;
 
-  const disptach = useDispatch()
+  const disptach = useDispatch();
 
   const onChange = (e) => {
     setFormData((prevState) => ({
@@ -29,20 +29,20 @@ const RequestForm = () => {
     }));
   };
 
-
   const onSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
     const requestData = {
-      title, 
-      description, 
-      name, 
-      phone, 
-      address 
-    }
+      title,
+      description,
+      name,
+      phone,
+      address,
+    };
 
-    disptach(createRequest(requestData))
-    handleClose()
+
+    disptach(createRequest(requestData));
+    handleClose();
   };
 
   return (
@@ -58,20 +58,22 @@ const RequestForm = () => {
         <Modal.Body>
           <Form>
             <Form.Group className="mb-3">
-              <Form.Label>Title</Form.Label>
-              <Form.Control
-                type="text"
-                required="true"
+              <Form.Label>Type</Form.Label>
+              <Form.Control 
+                as="select" 
                 id="title"
                 name="title"
-                value={title}
-                onChange={onChange}
-              />
+                value={title} 
+                onChange={onChange}>
+                <option value="Student ID Card">Student ID Card</option>
+                <option value="Graduation Certificate">Graduation Certificate</option>
+                <option value="University Identification">University Identification</option>
+                <option value="Library Books">Library Books</option>
+                <option value="Student Transcript">Student Transcript</option>
+                <option value="Recommendation">Recommendation</option>
+              </Form.Control>
             </Form.Group>
-            <Form.Group
-              className="mb-3"
-             
-            >
+            <Form.Group className="mb-3">
               <Form.Label>Description</Form.Label>
               <Form.Control
                 as="textarea"
