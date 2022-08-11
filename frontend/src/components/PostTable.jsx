@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { getRequests, reset } from "../features/request/requestSlice";
 import { Table, Button } from "react-bootstrap";
 import axios from "axios";
+import moment from "moment";
 import "./style.css";
 
 const PostTable = () => {
@@ -55,6 +56,7 @@ const PostTable = () => {
             <th>Name</th>
             <th>Address</th>
             <th>Status</th>
+            <th>Posted Date</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -66,6 +68,7 @@ const PostTable = () => {
               <td>{request.name}</td>
               <td>{request.address}</td>
               <td>{request.status}</td>
+              <td>{moment(request.createdAt).format("YYYY-MMM-DD")}</td>
               <td>
               <Button variant="warning" onClick={() => postHandler(request._id)}>Post</Button>
               </td>
