@@ -10,6 +10,9 @@ const requestSchema = mongoose.Schema({
     name:{
         type:String,
     },
+    idPic:{
+        type:String
+    },
     phone:{
         type:String,
     }
