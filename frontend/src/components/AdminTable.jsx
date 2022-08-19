@@ -82,37 +82,27 @@ const AdminTable = () => {
               <td>{request.title}</td>
               <td>{request.description}</td>
               <td>{request.name}</td>
-              <td><a href={request.idPic}>View </a></td>
+              <td>
+                <a href={request.idPic} target="_blank">Click to View </a>
+              </td>
               <td>{request.address}</td>
               <td>{request.status}</td>
-              {/* <td>
-                <ul className="btn-list">
-                  <li className="btn-list-item" style={{display: "inline"}}>
-                    <Button
-                      className="btn-approve"
-                      size="sm"
-                      variant="success"
-                      onClick={() => approveHandler(request._id)}
-                    >
-                      Approve
-                    </Button>
-                  </li>
-                  <li  style={{display: "inline"}}>
-                    <Button
-                      className="btn-reject"
-                      size="sm"
-                      variant="danger"
-                      onClick={() => rejectHandler(request._id)}
-                    >
-                      Reject
-                    </Button>
-                  </li>
-                </ul>
-              </td> */}
 
-<td>
-              <Button  size="sm" variant="success" onClick={() => approveHandler(request._id)}>Approve</Button>
-              <Button  size="sm" variant="danger" onClick={() => rejectHandler(request._id)}>Reject</Button>
+              <td>
+                <Button
+                  size="sm"
+                  variant="success"
+                  onClick={() => approveHandler(request._id)}
+                >
+                  Approve
+                </Button>
+                <Button
+                  size="sm"
+                  variant="danger"
+                  onClick={() => rejectHandler(request._id)}
+                >
+                  Reject
+                </Button>
               </td>
             </tr>
           ))}
