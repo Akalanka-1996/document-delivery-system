@@ -14,11 +14,12 @@ const RequestForm = () => {
     title: "",
     description: "",
     name: "",
+    idPic:"",
     phone: "",
     address: "",
   });
 
-  const { title, description, name, phone, address } = formData;
+  const { title, description, name, phone, address, idPic } = formData;
 
   const disptach = useDispatch();
 
@@ -36,11 +37,13 @@ const RequestForm = () => {
       title,
       description,
       name,
+      idPic,
       phone,
       address,
     };
 
-
+    console.log("abc")
+    console.log(requestData)
     disptach(createRequest(requestData));
     handleClose();
   };
@@ -94,6 +97,18 @@ const RequestForm = () => {
                 id="name"
                 name="name"
                 value={name}
+                onChange={onChange}
+              />
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>Student Id</Form.Label>
+              <Form.Control
+                type="text"
+                required
+                id="idPic"
+                name="idPic"
+                placeholder="Insert image URL"
+                value={idPic}
                 onChange={onChange}
               />
             </Form.Group>

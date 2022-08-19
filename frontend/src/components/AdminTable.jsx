@@ -70,6 +70,7 @@ const AdminTable = () => {
             <th>Title</th>
             <th>Description</th>
             <th>Name</th>
+            <th>Student Id</th>
             <th>Address</th>
             <th>Status</th>
             <th>Action</th>
@@ -81,6 +82,7 @@ const AdminTable = () => {
               <td>{request.title}</td>
               <td>{request.description}</td>
               <td>{request.name}</td>
+              <td><a href={request.idPic}>View </a></td>
               <td>{request.address}</td>
               <td>{request.status}</td>
               {/* <td>
