@@ -68,6 +68,8 @@ const RequestForm = () => {
                 name="title"
                 value={title} 
                 onChange={onChange}>
+                {/* <default value="Default">Abc</default> */}
+                <option style={{color: "red"}}>Select Option</option>
                 <option value="Student ID Card">Student ID Card</option>
                 <option value="Graduation Certificate">Graduation Certificate</option>
                 <option value="University Identification">University Identification</option>
